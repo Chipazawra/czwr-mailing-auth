@@ -35,5 +35,5 @@ jobs:
           run: docker build --tag czwr-mailing-auth-$(date +%s) .
         
         - name: push image
-          run: docker push ${{ secrets.DOCKER_USER }}/${{ github.repository }}
+          run: docker push chipazawra/${{ github.repository }}
 
