@@ -14,7 +14,7 @@ import (
 )
 
 var (
-	defaultHost = "127.0.0.1"
+	defaultHost = "0.0.0.1"
 	defaultPort = "8885"
 )
 
