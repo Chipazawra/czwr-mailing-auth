@@ -33,11 +33,13 @@ func New(config *Config) *Auth {
 	return &Auth{config: config}
 }
 
-func (a *Auth) Register(g *gin.Engine) {
+func (a *Auth) Register(g *gin.Engine) *gin.RouterGroup {
 
-	authorized := g.Group("/", gin.BasicAuth(a.config.Users))
+	authorized := g.Group("/auth", gin.BasicAuth(a.config.Users))
 	authorized.GET("/login", a.loginHandler)
-	g.GET("/logout", a.logoutHandler)
+	authorized.GET("/logout", a.logoutHandler)
+
+	return authorized
 
 }
 

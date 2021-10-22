@@ -15,7 +15,7 @@ func New() *PprofWrapper {
 	return &PprofWrapper{PprofEnabled: false}
 }
 
-func (pw *PprofWrapper) Register(g *gin.Engine) {
+func (pw *PprofWrapper) Register(g *gin.RouterGroup) {
 	g.POST("/pprof_enable", pw.enableHandler)
 	g.POST("/pprof_disable", pw.disableHandler)
 	gr := g.Group("/debug")
@@ -30,7 +30,7 @@ func (pw *PprofWrapper) Register(g *gin.Engine) {
 // @Accept  json
 // @Produce  json
 // @Success 200
-// @Router /pprof_enable [post]
+// @Router /debug/pprof_enable [post]
 func (pw *PprofWrapper) enableHandler(c *gin.Context) {
 	pw.PprofEnabled = true
 	c.JSON(
@@ -46,7 +46,7 @@ func (pw *PprofWrapper) enableHandler(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Success 200
-// @Router /pprof_disable [post]
+// @Router /debug/pprof_disable [post]
 func (pw *PprofWrapper) disableHandler(c *gin.Context) {
 	pw.PprofEnabled = false
 	c.JSON(

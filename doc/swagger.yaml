@@ -4,6 +4,32 @@ info:
   title: czwrMailing - auth service
   version: "1.0"
 paths:
+  /debug/pprof_disable:
+    post:
+      consumes:
+      - application/json
+      description: disable pprof API on service
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+      summary: disable pprof API
+      tags:
+      - pprofwrapper
+  /debug/pprof_enable:
+    post:
+      consumes:
+      - application/json
+      description: enable pprof API on service
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+      summary: enable pprof API
+      tags:
+      - pprofwrapper
   /login:
     get:
       consumes:
@@ -30,30 +56,4 @@ paths:
       summary: logout from service
       tags:
       - auth
-  /pprof_disable:
-    post:
-      consumes:
-      - application/json
-      description: disable pprof API on service
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: ""
-      summary: disable pprof API
-      tags:
-      - pprofwrapper
-  /pprof_enable:
-    post:
-      consumes:
-      - application/json
-      description: enable pprof API on service
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: ""
-      summary: enable pprof API
-      tags:
-      - pprofwrapper
 swagger: "2.0"

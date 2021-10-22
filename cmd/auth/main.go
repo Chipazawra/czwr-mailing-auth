@@ -47,14 +47,12 @@ func main() {
 	httpEngine.Use(gin.Recovery())
 
 	service := auth.New(auth.DefaultConfig)
-	service.Register(httpEngine)
-
-	//profile
+	group := service.Register(httpEngine)
+	//profiler
 	pprofrp := pprofwrapper.New()
-	pprofrp.Register(httpEngine)
-
+	pprofrp.Register(group)
 	//doc
-	httpEngine.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	group.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	err := httpEngine.Run(fmt.Sprintf("%v:%v", host, port))
 

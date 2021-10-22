@@ -23,6 +23,46 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/debug/pprof_disable": {
+            "post": {
+                "description": "disable pprof API on service",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "pprofwrapper"
+                ],
+                "summary": "disable pprof API",
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/debug/pprof_enable": {
+            "post": {
+                "description": "enable pprof API on service",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "pprofwrapper"
+                ],
+                "summary": "enable pprof API",
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
         "/login": {
             "get": {
                 "description": "get auth data",
@@ -56,46 +96,6 @@ var doc = `{
                     "auth"
                 ],
                 "summary": "logout from service",
-                "responses": {
-                    "200": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/pprof_disable": {
-            "post": {
-                "description": "disable pprof API on service",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "pprofwrapper"
-                ],
-                "summary": "disable pprof API",
-                "responses": {
-                    "200": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/pprof_enable": {
-            "post": {
-                "description": "enable pprof API on service",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "pprofwrapper"
-                ],
-                "summary": "enable pprof API",
                 "responses": {
                     "200": {
                         "description": ""
