@@ -14,4 +14,4 @@ build_and_run: swag build run
 	echo "build_and_run"
 
 build_docker:
-	docker build --tag czwr-mailing-auth .
+	docker build --tag czwr-mailing-auth:$(date +%s) .
