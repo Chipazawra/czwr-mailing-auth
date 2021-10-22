@@ -1,7 +1,12 @@
 package auth
 
 import (
+	"crypto/md5"
+	"encoding/base64"
+	"fmt"
 	"net/http"
+	"strconv"
+	"strings"
 	"time"
 
 	"github.com/Chipazawra/czwrMailing-auth/pkg/jwtmng"
@@ -19,7 +24,7 @@ type Config struct {
 }
 
 var DefaultConfig = &Config{
-	Users:      map[string]string{"admin": "admin"},
+	Users:      map[string]string{"admin": "21232f297a57a5a743894a0e4a801fc3"}, // md5 sum
 	JwtTTL:     60,
 	RefreshTTL: 180,
 }
@@ -35,7 +40,9 @@ func New(config *Config) *Auth {
 
 func (a *Auth) Register(g *gin.Engine) *gin.RouterGroup {
 
-	authorized := g.Group("/auth", gin.BasicAuth(a.config.Users))
+	authorized := g.Group("/auth")
+	authorized.Use(a.BasicAuthWrapper())
+	authorized.Use(gin.BasicAuth(a.config.Users))
 	authorized.GET("/login", a.loginHandler)
 	authorized.GET("/logout", a.logoutHandler)
 
@@ -92,4 +99,41 @@ func (a *Auth) logoutHandler(c *gin.Context) {
 			"status": "logout.",
 		})
 	}
+}
+func (a *Auth) BasicAuthWrapper() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		h := c.Request.Header.Get("Authorization")
+
+		abort := func() {
+			realm := "Basic realm=" + strconv.Quote("Authorization Required")
+			c.Header("WWW-Authenticate", realm)
+			c.AbortWithStatus(http.StatusUnauthorized)
+		}
+
+		if h != "" {
+			dh, err := decodeBasic(h)
+			if err != nil {
+				abort()
+				return
+			}
+			c.Request.Header.Set("Authorization", dh)
+		}
+		c.Next()
+	}
+}
+
+func decodeBasic(header string) (string, error) {
+	dh, err := base64.StdEncoding.DecodeString(
+		strings.ReplaceAll(header, "Basic ", ""),
+	)
+	if err != nil {
+		return "", err
+	}
+	usrpass := strings.SplitN(string(dh), ":", 2)
+	if len(usrpass) != 2 {
+		return "", fmt.Errorf("invalid string")
+	}
+	base := usrpass[0] + ":" + fmt.Sprintf("%x", md5.Sum([]byte(usrpass[1])))
+	return "Basic " + base64.StdEncoding.EncodeToString([]byte(base)), nil
+
 }
