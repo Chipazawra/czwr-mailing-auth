@@ -7,6 +7,7 @@ import (
 
 	_ "github.com/Chipazawra/czwrMailing-auth/doc"
 	auth "github.com/Chipazawra/czwrMailing-auth/internal"
+	"github.com/Chipazawra/czwrMailing-auth/pkg/pprofwrapper"
 	"github.com/gin-gonic/gin"
 	ginSwagger "github.com/swaggo/gin-swagger"
 	"github.com/swaggo/gin-swagger/swaggerFiles"
@@ -48,6 +49,11 @@ func main() {
 	service := auth.New(auth.DefaultConfig)
 	service.Register(httpEngine)
 
+	//profile
+	pprofrp := pprofwrapper.New()
+	pprofrp.Register(httpEngine)
+
+	//doc
 	httpEngine.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	err := httpEngine.Run(fmt.Sprintf("%v:%v", host, port))
