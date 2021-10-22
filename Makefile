@@ -13,5 +13,5 @@ build_and_run: swag build run
 	echo "build_and_run"
 	SIGNING_KEY=MYSERCRETKEY
 
-build_docker: swag
+build_docker:
 	docker build --tag czwr-mailing-auth .
