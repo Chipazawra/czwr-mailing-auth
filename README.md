@@ -17,3 +17,6 @@ ____
 ____
 
 Чтобы избежать хранинение паролей в бд сделал обёртку для gin.BasicAuth которая позволяет хранить пароли в md5
+____
+
+Настроен небольшой CI при пуше в мастер: lint->test->build Docker-image->[push image on Docker-hub](https://hub.docker.com/repository/docker/chipazawra/czwr-mailing-auth)

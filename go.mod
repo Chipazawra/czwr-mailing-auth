@@ -1,4 +1,4 @@
-module github.com/Chipazawra/czwrMailing-auth
+module github.com/Chipazawra/czwr-mailing-auth
 
 go 1.17
 
