@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+  auth:
+    image: chipazawra/czwr-mailing-auth:latest
+    environment:
+      SIGNING_KEY: ${MYSERCRETKEY:-DEFAULTSECRET}
+    ports:
+      - "5000:5000"
