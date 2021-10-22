@@ -9,6 +9,6 @@ RUN go mod download
 
 RUN go build -o ./bin/czwr-mailing-auth ./cmd/auth/main.go
 
-EXPOSE 5000
+EXPOSE 8885
 
 ENTRYPOINT ["./bin/czwr-mailing-auth"]
