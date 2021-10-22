@@ -40,5 +40,5 @@ jobs:
           run: docker build --tag ${{ env.IMAGE_TAG }} .
         
         - name: push image
-          run: docker push ${{ secrets.DOCKER_USER }}/${{ env.IMAGE_TAG }}
+          run: docker push ${{ secrets.DOCKER_USER }}/${{ env.IMAGE_TAG }}:latest
 
