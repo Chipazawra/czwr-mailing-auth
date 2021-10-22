@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/Chipazawra/czw-mailing-auth/pkg/pprofwrapper"
 	_ "github.com/Chipazawra/czwr-mailing-auth/doc"
 	auth "github.com/Chipazawra/czwr-mailing-auth/internal/auth"
+	"github.com/Chipazawra/czwr-mailing-auth/pkg/pprofwrapper"
 	"github.com/gin-gonic/gin"
 	ginSwagger "github.com/swaggo/gin-swagger"
 	"github.com/swaggo/gin-swagger/swaggerFiles"
