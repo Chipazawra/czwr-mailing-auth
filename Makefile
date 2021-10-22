@@ -15,4 +15,3 @@ build_and_run: swag build run
 
 build_docker:
 	docker build --tag czwr-mailing-auth .
-	docker push chipazawra
