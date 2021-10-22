@@ -3,57 +3,5 @@ info:
   description: This is a sample mailing servivce.
   title: czwrMailing - auth service
   version: "1.0"
-paths:
-  /debug/pprof_disable:
-    post:
-      consumes:
-      - application/json
-      description: disable pprof API on service
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: ""
-      summary: disable pprof API
-      tags:
-      - pprofwrapper
-  /debug/pprof_enable:
-    post:
-      consumes:
-      - application/json
-      description: enable pprof API on service
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: ""
-      summary: enable pprof API
-      tags:
-      - pprofwrapper
-  /login:
-    get:
-      consumes:
-      - application/json
-      description: get auth data
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: ""
-      summary: login in service
-      tags:
-      - auth
-  /logout:
-    get:
-      consumes:
-      - application/json
-      description: clear auth data
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: ""
-      summary: logout from service
-      tags:
-      - auth
+paths: {}
 swagger: "2.0"

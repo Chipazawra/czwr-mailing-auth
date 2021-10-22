@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Chipazawra/czwrMailing-auth/pkg/jwtmng"
+	"github.com/Chipazawra/czwr-mailing-auth/pkg/jwtmng"
 	"github.com/gin-gonic/gin"
 )
 
