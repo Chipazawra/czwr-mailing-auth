@@ -1,0 +1,6 @@
+users:
+  usr: pass
+  pass: usr
+
+jwtttl: 60
+refreshttl: 3600

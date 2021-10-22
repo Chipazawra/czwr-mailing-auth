@@ -1,0 +1,33 @@
+info:
+  contact: {}
+  description: This is a sample mailing servivce.
+  title: czwrMailing - auth service
+  version: "1.0"
+paths:
+  /login:
+    get:
+      consumes:
+      - application/json
+      description: get auth data
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+      summary: login in service
+      tags:
+      - auth
+  /logout:
+    get:
+      consumes:
+      - application/json
+      description: clear auth data
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+      summary: logout from service
+      tags:
+      - auth
+swagger: "2.0"
