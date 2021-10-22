@@ -3,6 +3,6 @@ services:
   auth:
     image: chipazawra/czwr-mailing-auth:latest
     environment:
-      SIGNING_KEY: ${MYSERCRETKEY:-DEFAULTSECRET}
+      SIGNING_KEY: ${SIGNING_KEY:-DEFAULTSECRET}
     ports:
-      - "5000:5000"
+      - "8885:8885"

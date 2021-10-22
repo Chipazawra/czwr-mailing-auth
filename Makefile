@@ -8,7 +8,7 @@ build:
 
 run:
 	export SIGNING_KEY=MYSERCRETKEY
-	bin/${AUTH_BINARY_NAME}.exe --host 0.0.0.0 --port 5000
+	bin/${AUTH_BINARY_NAME}.exe --host 0.0.0.0 --port 8885
 
 build_and_run: swag build run
 	echo "build_and_run"
