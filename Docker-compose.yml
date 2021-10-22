@@ -5,4 +5,4 @@ services:
     environment:
       SIGNING_KEY: ${MYSERCRETKEY:-DEFAULTSECRET}
     ports:
-      - "5000:5000"
+      - "8885:8885"

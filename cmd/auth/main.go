@@ -15,7 +15,7 @@ import (
 
 var (
 	defaultHost = "127.0.0.1"
-	defaultPort = "1488"
+	defaultPort = "8885"
 )
 
 // @title czwrMailing - auth service
