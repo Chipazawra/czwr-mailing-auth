@@ -2,6 +2,7 @@ package jwtmng
 
 import (
 	"fmt"
+	"log"
 	"math/rand"
 	"os"
 	"time"
@@ -16,8 +17,9 @@ var (
 func init() {
 
 	signingKey = os.Getenv("SIGNING_KEY")
+
 	if signingKey == "" {
-		panic("The environment variable \"SIGNING_KEY\" is not set")
+		log.Println("[WARNING] The environment variable \"SIGNING_KEY\" is not set, service started with default value.")
 	}
 }
 
