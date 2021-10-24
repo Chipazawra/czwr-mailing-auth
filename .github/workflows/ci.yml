@@ -6,7 +6,10 @@ on:
     branches:
       - master
   pull_request:
-    
+
+env:
+  IMAGE_TAG: czwr-mailing-auth
+
 jobs:
   golangci:
     name: lint
