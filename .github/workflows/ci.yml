@@ -34,7 +34,7 @@ jobs:
             DOCKER_USER: ${{ secrets.DOCKER_USER }}
             DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
           run: |
-            docker login -u chipazawra -p b2af525c-9b26-4c1a-bcf1-a79e6ae5d566
+            docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
         
         - name: check image tag
           run: echo $IMAGE_TAG
