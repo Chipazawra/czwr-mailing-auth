@@ -8,7 +8,8 @@ on:
   pull_request:
 
 env:
-  IMAGE_TAG: czwr-mailing-auth 
+  IMAGE_TAG: czwr-mailing-auth
+
 
 jobs:
   golangci:
