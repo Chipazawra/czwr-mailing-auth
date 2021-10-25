@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"time"
 
 	_ "github.com/Chipazawra/czwr-mailing-auth/doc"
 	auth "github.com/Chipazawra/czwr-mailing-auth/internal/auth"
@@ -45,6 +46,11 @@ func main() {
 
 	httpEngine := gin.New()
 	httpEngine.Use(gin.Recovery())
+	//log template
+	httpEngine.Use(gin.LoggerWithConfig(gin.LoggerConfig{
+		Formatter: logfmt,
+		Output:    os.Stdout,
+	}))
 
 	service := auth.New(auth.DefaultConfig)
 	group := service.Register(httpEngine)
@@ -60,4 +66,29 @@ func main() {
 		panic(err)
 	}
 
+}
+
+func logfmt(params gin.LogFormatterParams) string {
+
+	var statusColor, methodColor, resetColor string
+	if params.IsOutputColor() {
+		statusColor = params.StatusCodeColor()
+		methodColor = params.MethodColor()
+		resetColor = params.ResetColor()
+	}
+
+	if params.Latency > time.Minute {
+		// Truncate in a golang < 1.8 safe way
+		params.Latency = params.Latency - params.Latency%time.Second
+	}
+
+	return fmt.Sprintf("[AUTH-LOG] %v |%s %3d %s| %13v | %15s |%s %-7s %s %#v\n%s",
+		params.TimeStamp.Format("2006/01/02 - 15:04:05"),
+		statusColor, params.StatusCode, resetColor,
+		params.Latency,
+		params.ClientIP,
+		methodColor, params.Method, resetColor,
+		params.Path,
+		params.ErrorMessage,
+	)
 }
